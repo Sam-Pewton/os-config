@@ -1,0 +1,28 @@
+---
+- name: Check if miniforge is installed
+  shell: "source $HOME/.conda/etc/profile.d/conda.sh && conda --version"
+  register: conda_version
+  ignore_errors: true
+
+- name: Get OS type
+  shell: uname
+  register: os_type
+
+- name: Download the miniforge installer
+  get_url:
+    url: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-{{ os_type.stdout }}-{{ ansible_facts.architecture }}.sh"
+    dest: "{{ ansible_facts.env.get('HOME', '~') }}/Downloads/Miniforge3.sh"
+    mode: "0755"
+    force: "yes"
+  when: conda_version.failed
+
+- name: Run the miniforge installer
+  shell: "bash $HOME/Downloads/Miniforge3.sh -b -p $HOME/.conda"
+  when: conda_version.failed
+
+- name: Delete the installer
+  file:
+    path: "{{ ansible_facts.env.get('HOME', '~') }}/Downloads/Miniforge3.sh"
+    state: absent
+
+...

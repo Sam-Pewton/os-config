@@ -1,0 +1,15 @@
+---
+# In NixOS, I maintain the neovim version in configuration.nix.
+# This playbook serves to update the configuration only.
+
+- name: Delete the old configuration directory
+  file:
+    path: "{{ ansible_facts.env.get('HOME', '~') }}/.config/nvim"
+    state: absent
+
+- name: Symlink the neovim configuration
+  file:
+    src: "{{ playbook_dir.split('os-config')[0] ~ 'os-config/dotfiles/nvim' }}"
+    dest: "{{ ansible_facts.env.get('HOME', '~') }}/.config/nvim"
+    state: link
+...
