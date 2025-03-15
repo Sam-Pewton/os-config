@@ -1,0 +1,25 @@
+---
+- name: Get the latest release number
+  shell: curl --silent "https://api.github.com/repos/{{ project_name }}/releases/latest" | 
+         grep '"tag_name":' |                                            
+         sed -E 's/.*"([^"]+)".*/\1/' |
+         sed 's/v//'
+  register: release_version
+
+- name: Get the font release
+  get_url:
+    url: https://github.com/{{ project_name }}/releases/download/v{{ release_version.stdout }}/super-ttc-iosevka-{{ release_version.stdout }}.zip
+    dest: ~/Downloads/iosevka-font.zip
+
+- name: Unzip font
+  unarchive:
+    src: ~/Downloads/iosevka-font.zip
+    dest: /usr/share/fonts/
+  become: true
+  become_method: sudo
+
+- name: Cleanup font files
+  file:
+    path: ~/Downloads/iosevka-font*
+    state: absent
+...

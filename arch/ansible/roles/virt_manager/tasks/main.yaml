@@ -1,0 +1,48 @@
+---
+- name: Enable virtqemud
+  service:
+    name: virtqemud
+    enabled: true
+    state: started
+  become: true
+  become_method: sudo
+
+- name: Get current user
+  shell: whoami
+  register: current_user
+
+- name: Add current user to group
+  user:
+    name: current_user.stdout
+    groups: libvirt
+    append: yes
+  become: true
+  become_method: sudo
+
+- name: Edit libvirtd.conf
+  blockinfile:
+    path: /etc/libvirt/libvirtd.conf
+    marker: "# {mark} ANSIBLE ENABLED LIBVIRT BLOCK"
+    marker_begin: "START"
+    marker_end: "END"
+    block: |
+      unix_sock_group = "libvirt"
+      unix_sock_rw_perms = "0770"
+  become: true
+  become_method: sudo
+
+- name: Enable libvirtd
+  service:
+    name: libvirtd
+    enabled: true
+    state: started
+  become: true
+  become_method: sudo
+
+- name: Start default network (autostart)
+  virt_net:
+    autostart: true
+    name: default
+  become: true
+  become_method: sudo
+...
