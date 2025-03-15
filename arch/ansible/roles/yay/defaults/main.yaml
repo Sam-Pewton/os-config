@@ -1,0 +1,16 @@
+---
+source: 
+  { url: https://aur.archlinux.org/yay.git, dest: ~/yay, version: main }
+
+packages:
+  - brave-bin
+    # - bumblebee-status
+  - dracula-cursors-git
+  - gitmux
+  - pa-applet-git
+  - postman-bin
+  - scangearmp2
+  - spotify
+  - ttf-iosevka
+  - xboxdrv-stable-git
+...

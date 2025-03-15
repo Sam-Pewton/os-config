@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+  roles:
+    # Package manager installs
+    - pacman
+    - yay
+    # Desktop
+    - gdm
+    # Package setup/other binary installers
+    - alacritty
+    - docker
+    - golang
+    - iosevka_font
+    - miniforge
+    - nvim
+    - rustup
+    - virt_manager
+    - xboxdrv
+    - zig

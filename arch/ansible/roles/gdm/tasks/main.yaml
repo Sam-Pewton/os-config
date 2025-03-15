@@ -1,0 +1,15 @@
+---
+- name: Enable GNOME service (effective on reboot)
+  service:
+    name: gdm
+    enabled: yes
+  become: true
+  become_method: sudo
+
+- name: Enable NetworkManager service
+  service:
+    name: NetworkManager
+    enabled: yes
+  become: true
+  become_method: sudo
+...
