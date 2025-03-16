@@ -6,20 +6,26 @@
          sed 's/v//'
   register: release_version
 
+- name: Get user home path
+  shell: "echo $HOME"
+  register: user_home
+
 - name: Get the font release
   get_url:
-    url: https://github.com/{{ project_name }}/releases/download/v{{ release_version.stdout }}/super-ttc-iosevka-{{ release_version.stdout }}.zip
-    dest: ~/Downloads/iosevka-font.zip
+    url: https://github.com/{{ project_name }}/releases/download/v{{ release_version.stdout }}/PkgTTC-Iosevka-{{ release_version.stdout }}.zip
+    dest: "{{ user_home.stdout }}/Downloads/iosevka-font.zip"
 
 - name: Unzip font
   unarchive:
-    src: ~/Downloads/iosevka-font.zip
+    src: "{{ user_home.stdout }}/Downloads/iosevka-font.zip"
     dest: /usr/share/fonts/
+    remote_src: true
+    list_files: true
   become: true
   become_method: sudo
 
 - name: Cleanup font files
   file:
-    path: ~/Downloads/iosevka-font*
+    path: "{{ user_home.stdout }}/Downloads/iosevka-font*"
     state: absent
 ...

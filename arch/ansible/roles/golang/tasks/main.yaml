@@ -16,10 +16,15 @@
   shell: "echo $HOME"
   register: user_home
 
+- name: Ensure ~/bin directory exists
+  file:
+    path: "{{ user_home.stdout }}/bin"
+    state: directory
+
 - name: Download master version
   get_url: 
     url: "{{ base_url }}{{ use_version.filename }}"
-    dest: "{{ user_home.stdout }}/{{ home_dest }}"
+    dest: "{{ user_home.stdout }}/{{ home_dest }}/{{ use_version.filename }}"
     checksum: "sha256:{{ use_version.sha256 }}"
 
 - name: Remove any previous installations (if exists)
@@ -33,16 +38,26 @@
   unarchive:
     src: "{{ user_home.stdout }}/{{ home_dest }}/{{ use_version.filename }}"
     dest: "/usr/local"
+    remote_src: true
+    list_files: true
   become: true
   become_method: sudo
 
 - name: Add Go PATH (might come in via .conf later)
-  shell: echo todo
+  blockinfile:
+    path: "~/.bashrc"
+    marker: "# {mark} ANSIBLE ENABLED GOLANG BLOCK"
+    marker_begin: "START"
+    marker_end: "END"
+    block: |
+      # export GOPATH=/usr/local/go
+      export GOROOT=/usr/local/go
+      export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 - name: Ensure Go installed correctly
   shell: export PATH=$PATH:/usr/local/go/bin && go version
 
 - name: Delete the tarball
   file:
-    path: "{{ user_home.stdout }}/{{ home_dest }}/{{use_version.filename }}"
+    path: "{{ user_home.stdout }}/{{ home_dest }}/{{ use_version.filename }}"
 ...

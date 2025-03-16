@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-ansible-playbook ../ansible/setup.yaml --ask-become-pass
+ansible-playbook -i ./ansible/inventory ./ansible/setup.yaml --ask-become-pass --ask-pass
