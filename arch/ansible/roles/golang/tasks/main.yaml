@@ -50,12 +50,14 @@
     marker_begin: "START"
     marker_end: "END"
     block: |
-      # export GOPATH=/usr/local/go
+      export GOPATH=/usr/local/go
       export GOROOT=/usr/local/go
       export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 - name: Ensure Go installed correctly
-  shell: export PATH=$PATH:/usr/local/go/bin && go version
+  shell: go version
+  environment:
+    PATH: "$PATH:/usr/local/go/bin"
 
 - name: Delete the tarball
   file:

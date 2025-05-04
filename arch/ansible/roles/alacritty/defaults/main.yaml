@@ -1,4 +1,4 @@
 ---
-config_location: ~/os-config/dotfiles/alacritty
-symlink_dest: ~/.config/alacritty
+config_location: $HOME/Repos/os-config/dotfiles/alacritty
+symlink_dest: $HOME/.config/alacritty
 ...

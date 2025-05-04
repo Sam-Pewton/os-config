@@ -6,7 +6,7 @@ pacman_packages:
   - alsa-plugins
   - archlinux-wallpaper
   - arandr
-  - arc-gtk-theme
+    # - arc-gtk-theme  # seems it was removed from the arch repo?
   - aws-cli
   - base-devel
   - bridge-utils
@@ -23,10 +23,12 @@ pacman_packages:
   - docker-buildx
   - docker-compose
   - dmenu
+  - drawio-desktop
   - emacs
   - gcc
   - gedit
   - gimp
+  - git
   - gnome
   - gnome-system-monitor
   - htop
@@ -42,6 +44,7 @@ pacman_packages:
   - ninja
   - nitrogen
   - noto-fonts
+  - npm
   - numlockx
   - nvidia
   - nvidia-utils
@@ -80,4 +83,16 @@ pacman_packages:
   - xorg-server
   - xorg-xinit
   - zsh
+
+package_dl_directory: "makepkg_downloads"
+
+aur_packages:
+  - { url: https://aur.archlinux.org/yay-bin.git, name: yay, version: main }
+  - { url: https://aur.archlinux.org/brave-bin.git, name: brave-bin, version: main }
+  - { url: https://aur.archlinux.org/dracula-cursors-git.git, name: dracula-cursors-git, version: main }
+  - { url: https://aur.archlinux.org/gitmux.git, name: gitmux, version: main }
+  - { url: https://aur.archlinux.org/pa-applet-git.git, name: pa-applet-git, version: main }
+  - { url: https://aur.archlinux.org/postman-bin.git, name: postman-bin, version: main }
+  - { url: https://aur.archlinux.org/spotify.git, name: spotify, version: main }
+    # - { url: https://aur.archlinux.org/xboxdrv-stable-git.git, name: xboxdrv-git, version: main }
 ...

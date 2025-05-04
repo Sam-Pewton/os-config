@@ -1,0 +1,45 @@
+---
+- name: Prompt git_user var
+  pause:
+    prompt: "Enter your git username. (leave blank if not applicable)"
+    echo: yes
+  register: git_user
+
+- name: Prompt git_email var
+  pause:
+    prompt: "Enter your git email. (leave blank if not applicable)"
+    echo: yes
+  register: git_email
+
+- name: Set git user
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user.user_input }}"
+  when: git_user.user_input
+
+- name: Set git email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_email.user_input }}"
+  when: git_email.user_input
+
+- name: Set nvim to be the core editor
+  community.general.git_config:
+    name: core.editor
+    scope: global
+    value: nvim
+
+- name: Ensure 'Repos' directory exists
+  file:
+    path: "$HOME/Repos"
+    state: directory
+    mode: "0755"
+
+- name: Clone os-config repository
+  git:
+    repo: "http://github.com/Sam-Pewton/os-config"
+    dest: "$HOME/Repos/os-config"
+  loop: "{{ lookup('ansible.builtin.vars', 'start_repos', wantlist=True) }}"
+...

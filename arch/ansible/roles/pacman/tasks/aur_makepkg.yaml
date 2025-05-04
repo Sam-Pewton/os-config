@@ -1,0 +1,37 @@
+---
+- name: Ensure temporary package dest exists
+  file:
+    path: "$HOME/{{ package_dl_directory }}"
+    state: directory
+    mode: "0755"
+
+- name: "Clone {{ item.name }} package repositories"
+  git:
+    repo: "{{ item.url }}"
+    dest: "$HOME/{{ package_dl_directory }}/{{ item.name }}"
+    force: true  # In case of rerun. This is the pkg code.
+
+- name: "Build the {{ item.name }} package"
+  shell:
+    chdir: "$HOME/{{ package_dl_directory }}/{{ item.name }}"
+    cmd: "makepkg -sf --noconfirm"
+
+- name: "Get {{ item.name }} package zst archives"
+  find:
+    paths: "$HOME/{{ package_dl_directory }}/{{ item.name }}"
+    file_type: file
+    patterns: "*.pkg.tar.zst"
+  register: pkg_build
+
+- name: Filter tar zsts
+  set_fact:
+    filtered_zsts: "{{ pkg_build.files | reject('search', 'debug') | list }}"
+
+- name: "Install the built {{ item.name }} package with pacman"
+  pacman:
+    name: "{{ filtered_zsts[0].path }}"
+    state: latest
+    extra_args: --overwrite "*"
+  become: true
+  become_method: sudo
+...

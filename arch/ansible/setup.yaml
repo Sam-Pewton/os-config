@@ -2,16 +2,16 @@
   # connection: local
   gather_facts: yes
   roles:
-    # - pacman
-    - golang # golang >= 1.21 is a yay dependency
-    # - yay
-    # - gdm
-    # - alacritty
-    # - docker
-    # - iosevka_font
-    # - miniforge
-    # - nvim
-    # - rustup
-    # - virt_manager
-    # - xboxdrv
+    - pacman
+    - git
+    - golang
+    - gdm
+    - alacritty
+    - docker
+    - iosevka_font
+    - miniforge
+    - nvim
+    - rustup
+    - virt_manager
+      # - xboxdrv
     - zig

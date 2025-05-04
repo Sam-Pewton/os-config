@@ -1,11 +1,11 @@
 ---
-config_location: "~/os-config/dotfiles/nvim"
-symlink_dest: "~/.config/nvim"
-git_clone_location: "~/neovim"
+config_location: "$HOME/Repos/os-config/dotfiles/nvim"
+symlink_dest: "$HOME/.config/nvim"
+git_clone_location: "neovim"
 default_install_locations_root:
   - "/usr/local/bin/nvim"
   - "/usr/local/lib/nvim"
 default_install_locations_home:
-  - "~/.local/share/nvim"
-  - "~/.config/nvim"
+  - "$HOME/.local/share/nvim"
+  - "$HOME/.config/nvim"
 ...

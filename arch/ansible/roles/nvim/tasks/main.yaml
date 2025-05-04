@@ -27,10 +27,9 @@
 - name: Clone the neovim repository
   git:
     repo: "https://github.com/neovim/neovim"
-    dest: "~/{{ git_clone_location }}"
+    dest: "$HOME/{{ git_clone_location }}"
     version: "stable"
     force: true
-
 
 - name: Build and install the package
   make:

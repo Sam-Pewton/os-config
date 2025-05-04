@@ -1,2 +1,2 @@
 [vm]
-192.168.122.234 ansible_connection=ssh ansible_user=sam
+192.168.122.5 ansible_connection=ssh ansible_user=sam

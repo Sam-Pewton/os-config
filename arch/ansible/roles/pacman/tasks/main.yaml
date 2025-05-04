@@ -26,4 +26,19 @@
   become: true
   become_method: sudo
   with_items: "{{ pacman_packages }}"
+
+- include_tasks: aur_makepkg.yaml
+  loop: "{{ aur_packages }}"
+
+# sudo required due to permissions gitmux gives to files
+- name: Get user home path
+  shell: "echo $HOME"
+  register: user_home
+
+- name: Remove temporary package download directory
+  file:
+    path: "{{ user_home }}/{{ package_dl_directory }}"
+    state: absent
+  become: true
+  become_method: sudo
 ...
