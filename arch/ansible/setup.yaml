@@ -5,6 +5,7 @@
     - pacman
     - git
     - aur
+    - bash
     - golang
     - alacritty
     - docker

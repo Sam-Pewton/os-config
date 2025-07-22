@@ -1,0 +1,4 @@
+---
+config_location: "$HOME/Repos/os-config/dotfiles/bash/.bashrc"
+symlink_dest: "$HOME/.bashrc"
+...

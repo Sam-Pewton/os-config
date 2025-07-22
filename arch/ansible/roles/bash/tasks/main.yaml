@@ -1,0 +1,12 @@
+---
+- name: Delete .bashrc configuration
+  file:
+    path: "{{ symlink_dest }}"
+    state: absent
+
+- name: Symlink .bashrc configuration
+  file:
+    src: "{{ config_location }}"
+    dest: "{{ symlink_dest }}"
+    state: link
+...

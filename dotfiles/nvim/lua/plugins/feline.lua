@@ -1,10 +1,10 @@
 -- Status bar, :help feline.txt
 return {
-    "freddiehaddad/feline.nvim",
+    "famiu/feline.nvim",
     opts = {},
-    config = function(_, opts)
-        require("feline").setup()
-        -- require("feline").winbar.setup()
-        require("feline").statuscolumn.setup()
-    end,
+    -- config = function(_, opts)
+    --     require("feline").setup()
+    --     -- require("feline").winbar.setup()
+    --     require("feline").statuscolumn.setup()
+    -- end,
 }
