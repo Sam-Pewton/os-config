@@ -3,15 +3,16 @@
   gather_facts: yes
   roles:
     - pacman
-    - git
-    - golang
+    # - git
+    # - golang
+    # - aur
     - gdm
-    - alacritty
-    - docker
-    - iosevka_font
-    - miniforge
-    - nvim
-    - rustup
-    - virt_manager
-      # - xboxdrv
-    - zig
+      # - alacritty
+      # - docker
+      # - iosevka_font
+      # - miniforge
+      # - nvim
+      # - rustup
+      # - virt_manager
+      #   # - xboxdrv
+      # - zig

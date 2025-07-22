@@ -1,7 +1,7 @@
 ---
 - name: Enable GNOME service (effective on reboot)
   service:
-    name: gdm
+    name: gdm.service
     enabled: yes
   become: true
   become_method: sudo

@@ -5,7 +5,7 @@ pacman_packages:
   - alsa-utils
   - alsa-plugins
   - archlinux-wallpaper
-  - arandr
+    # - arandr
     # - arc-gtk-theme  # seems it was removed from the arch repo?
   - aws-cli
   - base-devel
@@ -13,8 +13,8 @@ pacman_packages:
   - cheese
   - clang
   - cmake
-  - conky
-  # - cuda
+    # - conky
+  - cuda
   - cups
   - curl
   - discord
@@ -24,20 +24,20 @@ pacman_packages:
   - docker-compose
   - dmenu
   - drawio-desktop
-  - emacs
+    # - emacs
   - gcc
+  - gdm
   - gedit
   - gimp
   - git
   - gnome
-  - gnome-system-monitor
   - htop
   - iw
   - jq
   - libreoffice
   - libguestfs
-  - lightdm
-  - lightdm-gtk-greeter
+    # - lightdm
+    # - lightdm-gtk-greeter
   - lxappearance
   - minikube
   - networkmanager
@@ -53,20 +53,21 @@ pacman_packages:
   - openbsd-netcat
   - papirus-icon-theme
   - pavucontrol
-  - picom
-  # - pulseaudio
+    # - picom
+    # - pulseaudio
   - python-lxml
   - python-lsp-server
   - python-pip
   - qemu-full
-  - qtile
-  - ranger
+    # - qtile
+    # - ranger
   - reflector
   - rofi
   - steam
+  - spotify-launcher
   - sqlite
   - sxiv
-  - terminator
+    # - terminator
   - tmux
   - ttf-dejavu
   - ttf-freefont
@@ -83,16 +84,4 @@ pacman_packages:
   - xorg-server
   - xorg-xinit
   - zsh
-
-package_dl_directory: "makepkg_downloads"
-
-aur_packages:
-  - { url: https://aur.archlinux.org/yay-bin.git, name: yay, version: main }
-  - { url: https://aur.archlinux.org/brave-bin.git, name: brave-bin, version: main }
-  - { url: https://aur.archlinux.org/dracula-cursors-git.git, name: dracula-cursors-git, version: main }
-  - { url: https://aur.archlinux.org/gitmux.git, name: gitmux, version: main }
-  - { url: https://aur.archlinux.org/pa-applet-git.git, name: pa-applet-git, version: main }
-  - { url: https://aur.archlinux.org/postman-bin.git, name: postman-bin, version: main }
-  - { url: https://aur.archlinux.org/spotify.git, name: spotify, version: main }
-    # - { url: https://aur.archlinux.org/xboxdrv-stable-git.git, name: xboxdrv-git, version: main }
 ...
