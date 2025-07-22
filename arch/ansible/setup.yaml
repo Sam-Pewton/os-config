@@ -1,18 +1,16 @@
-- hosts: vm
-  # connection: local
+- hosts: nodeonly
+  connection: local
   gather_facts: yes
   roles:
     - pacman
-    # - git
-    # - golang
-    # - aur
-    - gdm
-      # - alacritty
-      # - docker
-      # - iosevka_font
-      # - miniforge
-      # - nvim
-      # - rustup
-      # - virt_manager
-      #   # - xboxdrv
-      # - zig
+    - git
+    - aur
+    - golang
+    - alacritty
+    - docker
+    - iosevka_font
+    - miniforge
+    - nvim
+    - rustup
+    - virt_manager
+    - zig

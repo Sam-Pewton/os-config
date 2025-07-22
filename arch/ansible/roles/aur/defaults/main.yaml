@@ -4,9 +4,10 @@ package_dl_directory: "makepkg_downloads"
 aur_packages:
   - { url: https://aur.archlinux.org/yay-bin.git, name: yay, version: main }
   - { url: https://aur.archlinux.org/brave-bin.git, name: brave-bin, version: main }
-  - { url: https://aur.archlinux.org/dracula-cursors-git.git, name: dracula-cursors-git, version: main }
-  - { url: https://aur.archlinux.org/gitmux-bin.git, name: gitmux-bin, version: main }
-  - { url: https://aur.archlinux.org/pa-applet-git.git, name: pa-applet-git, version: main }
-  - { url: https://aur.archlinux.org/postman-bin.git, name: postman-bin, version: main }
+  - { url: https://aur.archlinux.org/zen-browser-bin.git, name: zen-browser-bin, version: main }
+    # - { url: https://aur.archlinux.org/dracula-cursors-git.git, name: dracula-cursors-git, version: main }
+    # - { url: https://aur.archlinux.org/gitmux-bin.git, name: gitmux-bin, version: main }
+    # - { url: https://aur.archlinux.org/pa-applet-git.git, name: pa-applet-git, version: main }
+    # - { url: https://aur.archlinux.org/postman-bin.git, name: postman-bin, version: main }
     # - { url: https://aur.archlinux.org/xboxdrv-stable-git.git, name: xboxdrv-git, version: main }
 ...

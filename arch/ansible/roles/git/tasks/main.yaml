@@ -30,16 +30,4 @@
     name: core.editor
     scope: global
     value: nvim
-
-- name: Ensure 'Repos' directory exists
-  file:
-    path: "$HOME/Repos"
-    state: directory
-    mode: "0755"
-
-- name: Clone os-config repository
-  git:
-    repo: "http://github.com/Sam-Pewton/os-config"
-    dest: "$HOME/Repos/os-config"
-  loop: "{{ lookup('ansible.builtin.vars', 'start_repos', wantlist=True) }}"
 ...

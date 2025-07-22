@@ -16,25 +16,27 @@
 
 - name: Download master version
   get_url: 
-    url: "{{ master_version['x86_64-linux']['tarball'] }}"
+    url: "{{ master_version['x86_64-linux'].tarball }}"
     dest: "{{ user_home.stdout }}/{{ home_dest }}"
-    checksum: "sha256:{{ master_version['x86_64-linux']['shasum'] }}"
+    checksum: "sha256:{{ master_version['x86_64-linux'].shasum }}"
 
 - name: Untar the tarball
   unarchive:
-    src: "{{ user_home.stdout }}/{{ home_dest }}/{{ master_version['x86_64-linux']['tarball'] | split('/') | last }}"
+    src: "{{ user_home.stdout }}/{{ home_dest }}/{{ master_version['x86_64-linux'].tarball | split('/') | last }}"
     dest: "{{ user_home.stdout }}/{{ home_dest }}"
+    list_files: true
 
 - name: Create symlink from zig binary to /usr/bin
   file:
-    src: "{{ user_home.stdout }}/{{ home_dest }}/zig-linux-x86_64-{{ master_version.version }}/zig"
+    src: "{{ user_home.stdout }}/{{ home_dest }}/{{ master_version['x86_64-linux'].tarball | split('/') | last | regex_replace('.tar.*$', '') }}/zig"
     dest: "/usr/bin/zig"
     state: link
+  when: 
   become: true
   become_method: sudo
 
 - name: Delete tarball
   file:
-    path: "{{ user_home.stdout }}/{{ home_dest }}/{{ master_version['x86_64-linux']['tarball'] | split('/') | last }}"
+    path: "{{ user_home.stdout }}/{{ home_dest }}/{{ master_version['x86_64-linux'].tarball | split('/') | last }}"
     state: absent
 ...
